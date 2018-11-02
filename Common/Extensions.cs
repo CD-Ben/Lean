@@ -293,6 +293,24 @@ namespace QuantConnect
         }
 
         /// <summary>
+        /// Converts the value of the specified double-precision floating-point number to an equivalent decimal number.
+        /// </summary>
+        /// <param name="value">The double-precision floating-point number to convert.</param>
+        /// <returns>A decimal number that is equivalent to value.</returns>
+        public static decimal ToDecimalSafe(this double value)
+        {
+            if (value < (double)decimal.MinValue)
+            {
+                return decimal.MinValue;
+            }
+            if (value > (double)decimal.MaxValue)
+            {
+                return decimal.MaxValue;
+            }
+            return (decimal)value;
+        }
+
+        /// <summary>
         /// Extension method for faster string to Int32 conversion.
         /// </summary>
         /// <param name="str">String to be converted to positive Int32 value</param>
